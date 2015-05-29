@@ -17,8 +17,8 @@ public class TcbaseController {
 	 @Autowired
 	    JdbcTemplate jdbcTemplate;
 	
-	@RequestMapping("/greeting")
-	 public String greeting(@RequestParam(value="name", required=false) String name, @RequestParam(value="type", required=false) String type,Model model) {
+	@RequestMapping("/monitor")
+	 public String monitor(@RequestParam(value="name", required=false) String name, @RequestParam(value="type", required=false) String type,Model model) {
 		List<Relation> results;
 		Set<String> names = new HashSet<String>();
 		Set<String> types = new HashSet<String>();
@@ -26,22 +26,22 @@ public class TcbaseController {
 		if(type==null){type="";}
 		if(name=="" && type==""){
 			results = jdbcTemplate.query(
-	                "select id, type, sentence, link, arg1type, arg1name, arg2type, arg2name from Relations",
+	                "select * from Relations",
 	                new RelationRowMapper());
 		}
 		else if (name!="" && type==""){
 			results = jdbcTemplate.query(
-	                "select id, type, sentence, link, arg1type, arg1name, arg2type, arg2name from Relations where arg1name = ? or arg2name = ?", new Object[] { name, name},
+	                "select * from Relations where arg1name = ? or arg2name = ?", new Object[] { name, name},
 	                new RelationRowMapper());
 		}
 		else if (name=="" && type!=""){
 			results = jdbcTemplate.query(
-	                "select id, type, sentence, link, arg1type, arg1name, arg2type, arg2name from Relations where type = ?", new Object[] { type },
+	                "select * from Relations where type = ?", new Object[] { type },
 	                new RelationRowMapper());
 		}
 		else{
 			results = jdbcTemplate.query(
-	                "select id, type, sentence, link, arg1type, arg1name, arg2type, arg2name from Relations where (arg1name = ? or arg2name = ?) and type = ? ", new Object[] { name, name, type },
+	                "select * from Relations where (arg1name = ? or arg2name = ?) and type = ? ", new Object[] { name, name, type },
 	                new RelationRowMapper());
 		}
 		
@@ -59,7 +59,7 @@ public class TcbaseController {
 		model.addAttribute("names", names);
 		model.addAttribute("types", types);
 		
-		return "greeting";
+		return "monitor";
 		
    }
 

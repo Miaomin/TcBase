@@ -8,13 +8,13 @@
 <p> Entities </p>
 <table>
     <tr th:each="nm : ${names}">
-        <td> <a th:href="@{/greeting(name=${nm},type=${type})}" th:text="${nm}">Entity</a></td>
+        <td> <a th:href="@{/monitor(name=${nm},type=${type})}" th:text="${nm}">Entity</a></td>
     </tr>
 </table>
 <p> Types </p>
 <table>
     <tr th:each="tp : ${types}">
-        <td> <a th:href="@{/greeting(type=${tp},name=${name})}" th:text="${tp}">type</a></td>
+        <td> <a th:href="@{/monitor(type=${tp},name=${name})}" th:text="${tp}">type</a></td>
     </tr>
 </table>
 <p> Relations </p>
@@ -25,7 +25,7 @@
     </tr>
     
     <tr>
-        <td> <a th:href="@{/greeting(type= , name= )}" th:text="@{'Reset'}">Reset</a></td>
+        <td> <a th:href="@{/monitor(type= , name= )}" th:text="@{'Reset'}">Reset</a></td>
     </tr>
 
 </table>
