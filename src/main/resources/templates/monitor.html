@@ -1,33 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
+<style>
+ul{
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+ 
+li {
+    display: block;
+    width: 5%;
+    float: left;
+    padding:0;
+}
+</style>
+
 <head>
-    <title>TechCrunch Monitor</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TechCrunch Monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 </head>
+
 <body>
-<p> Entities </p>
+<h2>Filters </h2>
+  
+<ul>
+  <li>Entities:</li>
+  <li th:each="nm : ${names}" ><a th:href="@{/monitor(name=${nm},type=${type})}" th:text="${nm}">Entity</a></li>
+</ul>
+<br></br>
+<ul>
+  <li>Types:</li>
+  <li th:each="tp : ${types}" ><a th:href="@{/monitor(type=${tp},name=${name})}" th:text="${tp}">type</a></li>
+</ul>
+<br></br>
+
+<!-- <table class="fixed"> -->
+<!--     <tr> <td><h2> Entities </h2></td> </tr> -->
+<!--     <tr> -->
+<!--         <td th:each="nm : ${names}"><a th:href="@{/monitor(name=${nm},type=${type})}" th:text="${nm}">Entity</a></td> -->
+<!--     </tr> -->
+<!--     <tr> <td> <h2>Types </h2></td> </tr> -->
+<!--     <tr> -->
+<!--         <td th:each="tp : ${types}"> <a th:href="@{/monitor(type=${tp},name=${name})}" th:text="${tp}">type</a></td> -->
+<!--     </tr> -->
+<!-- </table> -->
 <table>
-    <tr th:each="nm : ${names}">
-        <td> <a th:href="@{/monitor(name=${nm},type=${type})}" th:text="${nm}">Entity</a></td>
-    </tr>
-</table>
-<p> Types </p>
-<table>
-    <tr th:each="tp : ${types}">
-        <td> <a th:href="@{/monitor(type=${tp},name=${name})}" th:text="${tp}">type</a></td>
-    </tr>
-</table>
-<p> Relations </p>
-<table>
+    <tr> <td><h2> Relations</h2> </td></tr>
     <tr th:each="relation : ${relations}">
         <td th:text="${relation.getSentence()}">sentence</td>
         <td> <a th:href="${relation.getLink()}" th:text="@{'Read more'}">Read more</a></td>
     </tr>
-    
-    <tr>
-        <td> <a th:href="@{/monitor(type= , name= )}" th:text="@{'Reset'}">Reset</a></td>
-    </tr>
-
+    <tr></tr>
+    <tr> <td><a th:href="@{/monitor(type= , name= )}" th:text="@{'Reset'}">Reset</a></td></tr> 
 </table>
    
 </body>

@@ -1,5 +1,7 @@
 package tcbase;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,10 +56,15 @@ public class TcbaseController {
 			types.add(result.getType());
 		}
 		
+		List<String> sortedNames = new ArrayList<String>(names);
+		Collections.sort(sortedNames);
+		
+		List<String> sortedTypes = new ArrayList<String>(types);
+		Collections.sort(sortedTypes);
 		
 		model.addAttribute("relations", results);
-		model.addAttribute("names", names);
-		model.addAttribute("types", types);
+		model.addAttribute("names", sortedNames);
+		model.addAttribute("types", sortedTypes);
 		
 		return "monitor";
 		
