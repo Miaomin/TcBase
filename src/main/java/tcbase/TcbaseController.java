@@ -3,8 +3,6 @@ package tcbase;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
