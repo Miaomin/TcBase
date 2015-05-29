@@ -19,11 +19,16 @@
 </table>
 <p> Relations </p>
 <table>
-<tr th:each="relation : ${relations}">
+    <tr th:each="relation : ${relations}">
         <td th:text="${relation.getSentence()}">sentence</td>
         <td> <a th:href="${relation.getLink()}" th:text="@{'Read more'}">Read more</a></td>
     </tr>
-    </table>
+    
+    <tr>
+        <td> <a th:href="@{/greeting(type= , name= )}" th:text="@{'Reset'}">Reset</a></td>
+    </tr>
+
+</table>
    
 </body>
 </html>
